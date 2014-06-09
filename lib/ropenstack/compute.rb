@@ -3,12 +3,12 @@ require 'uri'
 
 module Ropenstack
 =begin
-	* Name: Nova
-	* Description: Implementation of the Nova API Client in Ruby 
+	* Name: Compute
+	* Description: Implementation of the Compute API Client in Ruby 
 	* Author: Sam 'Tehsmash' Betts
 	* Date: 01/15/2013
 =end
-  class Nova < OpenstackService
+  class Compute < OpenstackService
     ##
     # Gets a list of servers from OpenStack 
     #
@@ -84,23 +84,6 @@ module Ropenstack
     end
 
     ##
-    # Attach a cinder volume to a server, by passing the server id and
-    # the volume id.
-    ##
-    def attach_volume(id, volume) 
-      data = { 'volumeAttachment' => { 'volumeId' => volume, 'device' => "/dev/vdb" } }
-      return post_request(address("/servers/" + id + "/os-volume_attachments"), data, @token)
-    end
-    
-    ##
-    # Remove a cinder volume from a server, by passing the server id and
-    # the attachment id.
-    ##
-    def detach_volume(id, attachment)
-      return delete_request(address("/servers/"+id+"/os-volume_attachments/"+volume), @token)
-    end
-
-    ##
     # Retrieve a list of images from Openstack through the nova endpoint
     ##
     def images() 
@@ -126,62 +109,51 @@ module Ropenstack
     ##
     # Get a tenants compute quotas
     ##
-    def quotas()
+    def limits()
       return get_request(address("/limits"), @token)
     end
 
-    def security_groups(id = nil)
-      endpoint = "/os-security-groups"
-      unless id.nil?
-        endpoint = "#{endpoint}/#{id}"
+    ##
+    # Get a list of Compute Extensions
+    ##
+    def extensions(ali)
+      if ali.nil?
+        return get_request(address("/extensions"), @token)
+      else 
+        return get_request(address("/extensions/"+ ali), @token)
       end
-      return get_request(address(endpoint), @token)
     end
 
-    def create_security_group(name, description)
-      data = { "security_group" => {"name" => name, "description" => description } }
-      return post_request(address("/os-security-groups"), data, @token)
-    end
-
-    def destroy_security_group(id)
-      return post_request(address("/os-security-groups/#{id}"), @token)
-    end
-
-    def create_security_group_rule(protocol, from, to, cidr, parent, group = nil)
-      data = { 
-        "security_group_rule" => {
-          "ip_protocol" => protocol,
-          "from_port" => from,
-          "to_port" => to,
-          "cidr" => cidr,
-          "parent_group_id" => parent
-        } 
-      }
-      unless group.nil?
-        data["security_group_rule"]["group_id"] = group
+    def metadata(id, key)
+      if key.nil?
+        return get_request(address("/servers/"+id+"/metadata"), @token)
+      else
+        return get_request(address("/servers/"+id+"/metadata/" + key), @token)
       end
-      return post_request(address("/os-security-group-rules"), data, @token)
     end
 
-    def destroy_security_group_rule(id)
-      return delete_request(address("/os-security-group-rules/#{id}"), @token)
-    end
-
-    def keypairs(name = nil)
-      endpoint = "/os-keypairs" 
-      unless name.nil?
-        endpoint = "#{endpoint}/#{name}"
+    def set_metadata(id, data, key)
+      if key.nil?
+        return put_request(address("/servers/"+id+"/metadata"), data, @token)
+      else
+        return put_request(address("/servers/"+id+"/metadata/"+key), data, @token)
       end
-      return get_request(address(endpoint), @token)
     end
 
-    def create_keypair(name)
-      data = { "keypair" => { "name" => name } }
-      return post_request(address("/os-keypairs"), data, @token)
+    def update_metadata(id, data)
+      return post_request(address("/servers/"+id+"/metadata"), data, @token)
     end
 
-    def delete_keypair(name)
-      return delete_request(address("/os-keypairs/#{name}"), @token)
+    def delete_metadata(id, key)
+      return delete_request(address("/servers/"+id+"/metadata/" + key), @token)
+    end
+
+    def ips(id, network)
+      if network.nil?
+        return get_request(address("/servers/"+id+"/ips"), @token) 
+      else 
+        return get_request(address("/servers/"+id+"/ips/" + network), @token) 
+      end
     end
   end
 end

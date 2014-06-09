@@ -1,11 +1,11 @@
 module Ropenstack
   ##
-  # * Name: Cinder
-  # * Description: Implementation of the Cinder API Client in Ruby.
+  # * Name: BlockStorage
+  # * Description: Implementation of the Block Storage API Client in Ruby.
   # * Author: Sam 'Tehsmash' Betts
   # * Date: 01/15/2013
   ##
-  class Cinder < OpenstackService
+  class BlockStorage < OpenstackService
     ##
     # Gets the volumes from cinder, and provides them in a ruby hash 
     # with all information about them.

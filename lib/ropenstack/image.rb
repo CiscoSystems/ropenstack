@@ -3,14 +3,14 @@ require 'json'
 
 module Ropenstack
 =begin
-	* Name: Glance
+	* Name: Image
 	* Description: Implementation of the Glance V2.0 API Client in Ruby
 	* Author: Sam 'Tehsmash' Betts
 	* Date: 01/15/2013
 =end
-  class Glance < OpenstackService
+  class Image < OpenstackService
     ##
-    # Upload an image to glance from a file, takes in a ruby file object. 
+    # Upload an image to the Image Service from a file, takes in a ruby file object. 
     # More convoluted than it should be because for a bug in Quantum
     # which just returns an error no matter the outcome.
     ## 
@@ -59,8 +59,16 @@ module Ropenstack
     # Returns a list of images with all associated meta-data in 
     # hash format.
     ##
-    def images()
-      return get_request(v2_address("images"), @token)["images"]
+    def images(id)
+      if id.nil?
+        return get_request(v2_address("images"), @token)["images"]
+      else
+        return get_request(v2_address("images/" + id), @token)
+      end
+    end
+
+    def schemas(type)
+      return get_request(v2_address("schemas/" + type), @token)
     end
 
     private

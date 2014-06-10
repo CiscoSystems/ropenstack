@@ -1,14 +1,14 @@
-require 'ropenstack/openstackservice'
+require 'ropenstack/common/openstackservice'
 require 'uri'
 
 module Ropenstack
   ##
-  # * Name: Keystone	
-  # * Description: An implementation of the Keystone API Client in Ruby
+  # * Name: Identity	
+  # * Description: An implementation of the Identity API Client in Ruby
   # * Author: Sam 'Tehsmash' Betts
   # * Date: 01/15/2013
   ##
-  class Keystone < OpenstackService
+  class Identity < OpenstackService
     ##
     # Overide of the initialize function to allow users to provide keystone address
     # and port outside of a URI which then gets passed on to the super function.
@@ -112,7 +112,7 @@ module Ropenstack
     end
 
     ##
-    # Get the service catalog returned by Keystone on authentication.
+    # Get the service catalog returned by Identity on authentication.
     ##
     def services()
       return @data["access"]["serviceCatalog"]
@@ -129,7 +129,7 @@ module Ropenstack
       return @data["access"]["token"]["tenant"]["name"] 
     end
 
-    # Separate Keystone Calls 
+    # Separate Identity Calls 
 
     def tenant_list()
       return get_request(address('/tenants'), token()) 

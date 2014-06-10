@@ -1,4 +1,4 @@
-require 'ropenstack/rest'
+require 'ropenstack/common/rest'
 
 module Ropenstack
 =begin

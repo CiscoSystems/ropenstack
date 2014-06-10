@@ -1,3 +1,5 @@
+require 'ropenstack/common/rest'
+
 module Ropenstack
   ##
   # * Name: BlockStorage

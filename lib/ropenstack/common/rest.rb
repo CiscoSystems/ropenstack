@@ -35,10 +35,13 @@ module Ropenstack
       when Net::HTTPSuccess then
         # This covers cases where the response may not validate as JSON.
         begin
-          return JSON.parse(response.body)
+          data = JSON.parse(response.body)
         rescue
-          return {}
+          data = {}
         end
+        ## Get the Headers out of the response object
+        data['headers'] = response.to_hash()
+        return data
       when Net::HTTPBadRequest
         raise Ropenstack::MalformedRequestError, response.body
       when Net::HTTPNotFound

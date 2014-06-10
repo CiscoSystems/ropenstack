@@ -1,11 +1,11 @@
 module Ropenstack
 =begin
-	* Name: Quantum
-	* Description: An implementation of the Quantum V2.0 API Client in Ruby
+	* Name: Networking
+	* Description: An implementation of the Networking V2.0 API Client in Ruby
 	* Authors: Sam 'Tehsmash' Betts, John Davidge
 	* Date: 01/15/2013
 =end
-  class Quantum < OpenstackService
+  class Networking < OpenstackService
     ##
     # Get a list of a tenants networks
     # 

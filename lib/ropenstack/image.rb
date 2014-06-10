@@ -10,6 +10,52 @@ module Ropenstack
 =end
   class Image < OpenstackService
     ##
+    # Returns a list of images with all associated meta-data in 
+    # hash format.
+    ##
+    def images(id)
+      if id.nil?
+        return get_request(v2_address("images"), @token)["images"]
+      else
+        return get_request(v2_address("images/" + id), @token)
+      end
+    end
+
+    ## TODO IMAGE DELETE CODE
+    def image_delete(id)
+    end
+
+    def image_download(id)
+    end
+
+    def image_add_tag(id)
+    end
+
+    def image_delete_tag(id)
+    end
+
+    ## Members
+    def members(id)
+    end
+
+    def member_add()
+    end
+
+    def member_delete()
+    end
+
+    def member_update()
+    end
+
+    ## Schemas
+    def schemas(type)
+      return get_request(v2_address("schemas/" + type), @token)
+    end
+
+
+    ## BELOW HERE IS OLD CODE THAT MAY OR MAYNOT WORK, THAR BE DRAGONS
+
+    ##
     # Upload an image to the Image Service from a file, takes in a ruby file object. 
     # More convoluted than it should be because for a bug in Quantum
     # which just returns an error no matter the outcome.
@@ -53,22 +99,6 @@ module Ropenstack
       req = Net::HTTP::Put.new(uri.request_uri, initheader = headers)
       req.body = data
       return do_request(uri, req, manage_errors, 0)
-    end
-
-    ##
-    # Returns a list of images with all associated meta-data in 
-    # hash format.
-    ##
-    def images(id)
-      if id.nil?
-        return get_request(v2_address("images"), @token)["images"]
-      else
-        return get_request(v2_address("images/" + id), @token)
-      end
-    end
-
-    def schemas(type)
-      return get_request(v2_address("schemas/" + type), @token)
     end
 
     private

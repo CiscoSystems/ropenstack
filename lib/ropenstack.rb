@@ -5,10 +5,11 @@
 	* Date: 01/15/2013
 =end
 module Ropenstack
-  require 'ropenstack/keystone'
-  require 'ropenstack/glance'
-  require 'ropenstack/cinder'
-  require 'ropenstack/nova'
-  require 'ropenstack/quantum'
-  require 'ropenstack/error'
+  require 'ropenstack/identity/identity'
+  require 'ropenstack/image'
+  require 'ropenstack/blockStorage'
+  require 'ropenstack/compute/compute'
+  require 'ropenstack/compute/computeExtension'
+  require 'ropenstack/networking'
+  require 'ropenstack/common/error'
 end

@@ -8,20 +8,38 @@ module Ropenstack
   # * Date: 01/15/2013
   ##
   class Database < OpenstackService
+    def initialize(location, token, accountid)
+      super(location, token)
+      @accountid = accountid
+    end
+
     ## Database Instances
     def instances(id)
+      if id.nil? 
+        get_request(address("/instances"), @token)
+      else
+        get_request(address("/instances/" + id), @token)
+      end
     end
 
-    def instance_create()
+    def instance_create(databases, flavorRef, name, users, volumes)
+      ## TODO Construct data
+      data = {}
+
+      post_request(address("/instances"), data, @token)
     end
 
-    def instance_delete()
+    def instance_delete(id)
+      delete_request(address("/instances/" + id), @token)
     end
 
     def instance_root(id)
+      get_request(address("/instances/" + id + "/root"), @token)
     end
 
     def instance_root_enable(id)
+      ## Empty data field
+      post_request(address("/instances/" + id + "/root"), {}, @token)
     end
 
     ## Database Instance Actions
@@ -56,6 +74,10 @@ module Ropenstack
 
     ## Flavors
     def flavors(id)
+    end
+
+    def address(endpoint)
+      super(endpoint) + @accountid
     end
   end
 end

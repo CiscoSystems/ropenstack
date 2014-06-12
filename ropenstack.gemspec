@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
 	s.name		= 'ropenstack'
-	s.version	= '1.2.1'
+	s.version	= '2.0.0'
 	s.date		= '2013-01-15'
 	s.summary 	= 'Openstack for Ruby'
 	s.description 	= 'A Ruby wrapper for all the openstack API calls'

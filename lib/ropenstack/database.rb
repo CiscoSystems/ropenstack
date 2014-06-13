@@ -22,9 +22,16 @@ module Ropenstack
       end
     end
 
-    def instance_create(databases, flavorRef, name, users, volumes)
-      ## TODO Construct data
-      data = {}
+    def instance_create(databases, flavorRef, name, users, volume)
+      ## Construct data
+      data = { :instance => {
+          :databases => databases,
+          :flavorRef => flavorRef, 
+          :name => name,
+          :users => users,
+          :volume => volume
+        }
+      }
 
       post_request(address("/instances"), data, @token)
     end
@@ -44,36 +51,62 @@ module Ropenstack
 
     ## Database Instance Actions
     def instance_action(id, action, param)
-      ## IF ACTION RESTART
-      ## ELSE IF ACTION RESIZE
-      #### IF PARAM IS INT
-      #### ELSE IF PARAM IS STRING
-      #### END 
-      ## END
+      case action
+      when "RESTART" 
+        post_request(address("/instances/" + id + "/action"), {:restart => {}}, @token)
+      when "RESIZE"
+        if param.is_a? String
+          post_request(address("/instances/" + id + "/action"), {:resize => {:flavorRef => param }}, @token)
+        elsif param.is_a? Int
+          post_request(address("/instances/" + id + "/action"), {:resize => {:volume => {:size => param }}}, @token)
+        else
+          raise Ropenstack::RopenstackError, "Invalid Parameter Passed"
+        end
+      else
+        raise Ropenstack::RopenstackError, "Invalid Action Passed"
+      end
     end
 
     ## Databases
-    def databases()
+    def databases(instance)
+      get_request(address("/instances/" + instance + "/databases"), @token)
     end
 
-    def database_create()
+    def database_create(instance, name)
+      data = { :databases => [
+          {
+            :name => name
+          }
+        ]
+      }
+      post_request(address("/instances/" + instance + "/databases"), data, @token)
     end
 
-    def database_delete()
+    def database_delete(instance, name)
+      delete_request(address("/instances/" + instance + "/databases/" + name), @token)
     end
 
     ## Users
-    def users()
+    def users(instance)
+      get_request(address("/instances/" + instance + "/users"), @token)
     end
 
-    def user_create()
+    def user_create(instance, name, databases)
+      ## TODO Make this work
+      post_request(address("/instances/" + instance + "/users"), data, @token)
     end
 
-    def user_delete()
+    def user_delete(instance, name)
+      post_request(address("/instances/" + instance + "/users/" + name), @token)
     end
 
     ## Flavors
     def flavors(id)
+      if id.nil? 
+        get_request(address("/flavors"), @token)
+      else
+        get_request(address("/flavors/" + id), @token)
+      end
     end
 
     def address(endpoint)

@@ -21,17 +21,37 @@ module Ropenstack
       end
     end
 
-    ## TODO IMAGE DELETE CODE
-    def image_delete(id)
+    def image_create(name, id, visibilty, tags)
+      data = { 
+        :name => name
+      }
+      unless id.nil?
+        data[:id] = id
+      end
+      unless visibility.nil?
+        data[:visibility] = visibility
+      end
+      unless tags.nil?
+        data[:tags] = tags
+      end
+
+      post_request(v2_address("images"), data, @token)
     end
 
+    def image_delete(id)
+      delete_request(v2_address("images/" + id), @token)
+    end
+
+    # TODO Ruby HTTP Binary Download to FILE
     def image_download(id)
     end
 
-    def image_add_tag(id)
+    def image_add_tag(id, tag)
+      put_request(v2_address("images/"+id+"/tags/"+tag), @token)
     end
 
     def image_delete_tag(id)
+      delete_request(v2_address("images/"+id+"/tags/"+tag), @token)
     end
 
     ## Members

@@ -7,16 +7,24 @@ module Ropenstack
   ##
   class ObjectStorage < OpenstackService
     ## Accounts
-
     def account(id, head)
+      if head
+        get_request(address(id), @token)
+      else
+        head_request(address(id), @token)
+      end
     end
 
     def create_account()
     end
 
-    ## Containers
-    
+    ## Containers 
     def container(account, container, head)
+      if head
+        get_request(address(account + "/" + container), @token)
+      else
+        head_request(address(account + "/" + container), @token)
+      end
     end
 
     def create_container(account, container)
@@ -29,8 +37,12 @@ module Ropenstack
     end
     
     ## Objects
-
     def object(account, container, object)
+      get_request(address(account + "/" + container + "/" + object), @token)
+    end
+    
+    def object_metadata(account, container, object)
+      head_request(address(account + "/" + container + "/" + object), @token)
     end
 
     def create_object(account, container, object)
@@ -40,9 +52,6 @@ module Ropenstack
     end
 
     def delete_object(account, container, object)
-    end
-
-    def object_metadata(account, container, object)
     end
     
     def create_object_metadata(account, container, object)

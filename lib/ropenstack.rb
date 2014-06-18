@@ -7,7 +7,7 @@
 module Ropenstack
   require 'ropenstack/identity/identity'
   require 'ropenstack/image/image'
-  require 'ropenstack/blockStorage/blockStorage'
+  require 'ropenstack/blockStorage'
   require 'ropenstack/compute/compute'
   require 'ropenstack/compute/computeExtension'
   require 'ropenstack/networking/networking'

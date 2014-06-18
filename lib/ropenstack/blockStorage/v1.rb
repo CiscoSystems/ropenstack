@@ -1,13 +1,4 @@
-require 'ropenstack/common/rest'
-
-module Ropenstack
-  ##
-  # * Name: BlockStorage
-  # * Description: Implementation of the Block Storage API Client in Ruby.
-  # * Author: Sam 'Tehsmash' Betts
-  # * Date: 01/15/2013
-  ##
-  class BlockStorage < OpenstackService
+module BlockStorageVersion1
     ##
     # Gets the volumes from cinder, and provides them in a ruby hash 
     # with all information about them.
@@ -50,18 +41,21 @@ module Ropenstack
         }
       } 
 
-      data["volume"]["display_description"] = opts[:description] unless opts[:description].nil?
-      data["volume"]["metadata"] = opts[:metadata] unless opts[:metadata].nil?
-      data["volume"]["availability_zone"] = opts[:zone] unless opts[:zone].nil?
+      data["volume"]["display_description"] = options[:description] unless options[:description].nil?
+      data["volume"]["metadata"] = options[:metadata] unless options[:metadata].nil?
+      data["volume"]["availability_zone"] = options[:zone] unless options[:zone].nil?
 
       return post_request(address("/volumes"), data, @token)
     end
-
+    
     ##
     # Delete a volume given an ID.
     ##
     def delete(id)
       return delete_request(address("/volumes/#{id}"), @token)
     end
-  end
+
+    def version
+      "V1"
+    end
 end

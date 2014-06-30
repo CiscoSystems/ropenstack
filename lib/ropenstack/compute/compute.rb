@@ -1,6 +1,8 @@
 require 'ropenstack/common/rest'
 require 'uri'
 
+require 'ropenstack/compute/extensions/quotas'
+
 module Ropenstack
 =begin
 	* Name: Compute

@@ -154,7 +154,7 @@ module OrchestrationVersion1
     delete_request(address("/software_deployments/" + id), @token)
   end
 
-  def version()
+  def version
     "V1"
   end
 end

@@ -105,7 +105,7 @@ module DatabaseVersion1
     super(endpoint) + @accountid
   end
 
-  def version()
+  def version
     "V1"
   end
 end

@@ -134,4 +134,8 @@ module ImageVersion2
   def v1_address(endpoint)
     address("/v1/#{endpoint}")
   end
+
+  def version()
+    "V2"
+  end
 end

@@ -1,8 +1,8 @@
-require 'ropenstack/networking/extensions/l3'
-require 'ropenstack/networking/extensions/lbaas'
-require 'ropenstack/networking/extensions/metering'
-require 'ropenstack/networking/extensions/quotas'
-require 'ropenstack/networking/extensions/securitygroups'
+require 'ropenstack/networking/v2/extensions/l3'
+require 'ropenstack/networking/v2/extensions/lbaas'
+require 'ropenstack/networking/v2/extensions/metering'
+require 'ropenstack/networking/v2/extensions/quotas'
+require 'ropenstack/networking/v2/extensions/securitygroups'
 
 module Ropenstack
 =begin

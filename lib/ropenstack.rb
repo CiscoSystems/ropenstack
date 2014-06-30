@@ -5,11 +5,10 @@
 	* Date: 01/15/2013
 =end
 module Ropenstack
-  require 'ropenstack/identity/identity'
+  require 'ropenstack/identity'
   require 'ropenstack/image/image'
   require 'ropenstack/blockStorage'
   require 'ropenstack/compute/compute'
-  require 'ropenstack/compute/computeExtension'
   require 'ropenstack/networking/networking'
   require 'ropenstack/common/error'
 end

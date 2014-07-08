@@ -11,9 +11,9 @@ module ImageVersion2
   ##
   def images(id)
     if id.nil?
-      return get_request(v2_address("images"), @token)["images"]
+      return get_request(address("images"), @token)["images"]
     else
-      return get_request(v2_address("images/" + id), @token)
+      return get_request(address("images/" + id), @token)
     end
   end
 
@@ -31,11 +31,11 @@ module ImageVersion2
       data[:tags] = tags
     end
 
-    post_request(v2_address("images"), data, @token)
+    post_request(address("images"), data, @token)
   end
 
   def image_delete(id)
-    delete_request(v2_address("images/" + id), @token)
+    delete_request(address("images/" + id), @token)
   end
 
   # TODO Ruby HTTP Binary Download to FILE
@@ -43,11 +43,11 @@ module ImageVersion2
   end
 
   def image_add_tag(id, tag)
-    put_request(v2_address("images/"+id+"/tags/"+tag), @token)
+    put_request(address("images/"+id+"/tags/"+tag), @token)
   end
 
   def image_delete_tag(id)
-    delete_request(v2_address("images/"+id+"/tags/"+tag), @token)
+    delete_request(address("images/"+id+"/tags/"+tag), @token)
   end
 
   ## Members
@@ -65,7 +65,7 @@ module ImageVersion2
 
   ## Schemas
   def schemas(type)
-    return get_request(v2_address("schemas/" + type), @token)
+    return get_request(address("schemas/" + type), @token)
   end
 
 
@@ -86,7 +86,7 @@ module ImageVersion2
       "public" => is_public
     }
     imagesBefore = images()
-    post_request(v2_address("images"), data, @token, false)
+    post_request(address("images"), data, @token, false)
     imagesAfter = images()
     foundNewImage = true
     image = nil
@@ -120,19 +120,10 @@ module ImageVersion2
   private
 
   ##
-  # Function to use to get the v2 address location of an endpoint
-  # because some quantum calls change version.
+  # Function to get the v2 address location of an endpoint.
   ##
-  def v2_address(endpoint)
+  def address(endpoint)
     address("/v2/#{endpoint}")
-  end
-
-  ##
-  # Function to use to get the v1 address location of an endpoint
-  # because some quantum calls change version.
-  ##
-  def v1_address(endpoint)
-    address("/v1/#{endpoint}")
   end
 
   def version

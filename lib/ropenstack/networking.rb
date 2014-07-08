@@ -13,11 +13,11 @@ module Ropenstack
 =end
   class Networking < OpenstackService
     ## Extensions
-    extend L3
-    extend LBaaS
-    extend Metering
-    extend Quotas
-    extend SecurityGroups
+    include L3
+    include LBaaS
+    include Metering
+    include Quotas
+    include SecurityGroups
 
     ## Networks
 

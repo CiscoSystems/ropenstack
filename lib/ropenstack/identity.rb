@@ -18,6 +18,9 @@ module Ropenstack
       else
         raise Ropenstack::RopenstackError, "Invalid Type Passed to Identity"
       end
+      unless token.nil?
+        @data = { "access" => { "token" => { "id" => token } } } 
+      end
     end
   end
 end

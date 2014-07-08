@@ -10,8 +10,8 @@ module Ropenstack
   # * Date: 30/16/2014
   ##
   class Identity < OpenstackService
-    def initialize(location, token, type)
-      super(location, token)
+    def initialize(location, port, token, type)
+      super(location + ":" + port.to_s, token)
       case type
       when "identityv2" then extend IdentityVersion2
       when "identityv3" then extend IdentityVersion3

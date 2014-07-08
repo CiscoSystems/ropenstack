@@ -166,6 +166,10 @@ module IdentityVersion2
 		end
 	end
 
+  def address(endpoint)
+    super("/v2.0/" + endpoint)
+  end
+
   def version
     "V2"
   end

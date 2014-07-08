@@ -1,7 +1,7 @@
 require 'ropenstack/common/rest'
 require 'uri'
 
-require 'ropenstack/compute/extensions/quotas'
+require 'ropenstack/compute/v2/extensions/quotasets'
 
 module Ropenstack
 =begin

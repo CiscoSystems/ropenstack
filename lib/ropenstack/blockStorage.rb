@@ -1,6 +1,7 @@
 require 'ropenstack/common/rest'
 require 'ropenstack/blockStorage/v1'
 require 'ropenstack/blockStorage/v2'
+require 'ropenstack/common/openstackservice'
 
 module Ropenstack
   ##

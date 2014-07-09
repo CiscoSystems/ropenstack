@@ -1,4 +1,4 @@
-module BlockStorageVersion1
+module Ropenstack::BlockStorage::Version1
     ##
     # Gets the volumes from cinder, and provides them in a ruby hash 
     # with all information about them.

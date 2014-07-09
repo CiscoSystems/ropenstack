@@ -1,5 +1,5 @@
-module BlockStorageVersion2
+module Ropenstack::BlockStorage::Version2
   def version
     "V2"
-  end
+  end 
 end

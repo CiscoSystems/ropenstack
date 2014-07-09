@@ -1,9 +1,6 @@
 require 'ropenstack/common/rest'
 require 'uri'
 
-require 'ropenstack/compute/v2/extensions/keypairs'
-require 'ropenstack/compute/v2/extensions/securitygroups'
-
 module Ropenstack
 =begin
 	* Name: Compute
@@ -12,8 +9,8 @@ module Ropenstack
 	* Date: 01/15/2013
 =end
   class Compute < OpenstackService
-    include Keypairs
-    include SecurityGroups
+    require 'ropenstack/compute/v2'
+    include V2::Extensions
 
     ##
     # Gets a list of servers from OpenStack 

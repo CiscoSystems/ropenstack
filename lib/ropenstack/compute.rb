@@ -10,7 +10,9 @@ module Ropenstack
 =end
   class Compute < OpenstackService
     require 'ropenstack/compute/v2'
-    include V2::Extensions
+    require 'ropenstack/compute/v3'
+
+    include Version2
 
     ##
     # Gets a list of servers from OpenStack 

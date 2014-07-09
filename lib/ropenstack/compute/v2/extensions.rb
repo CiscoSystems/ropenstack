@@ -1,5 +1,5 @@
 module Ropenstack
-  module Compute::V2
+  module Compute::Version2
     module Extensions
       # Pull in module extension files
       require "ropenstack/compute/v2/extensions/keypairs"

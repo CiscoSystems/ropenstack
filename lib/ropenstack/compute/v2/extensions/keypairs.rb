@@ -1,4 +1,4 @@
-module Ropenstack::Compute::V2::Extensions
+module Ropenstack::Compute::Version2::Extensions
   module Keypairs
     def keypairs(name = nil)
       endpoint = "/os-keypairs" 

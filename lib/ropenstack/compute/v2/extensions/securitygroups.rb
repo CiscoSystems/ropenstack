@@ -1,4 +1,4 @@
-module Ropenstack::Compute::V2::Extensions
+module Ropenstack::Compute::Version2::Extensions
   module SecurityGroups
     def security_groups(id = nil)
       endpoint = "/os-security-groups"

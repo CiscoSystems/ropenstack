@@ -1,5 +1,4 @@
 require 'ropenstack/common/rest'
-require 'ropenstack/orchestration/v1'
 
 module Ropenstack
   ##
@@ -9,10 +8,13 @@ module Ropenstack
 	# * Date: 30/06/2014
   ##
   class Orchestration < OpenstackService
+    # Pull in sub-modules 
+    require 'ropenstack/orchestration/v1'
+
     def intialize(location, token, type)
       super(location, token)
       case type
-      when "orchestration" then extend OrchestrationVersion1
+      when "orchestration" then extend Version1
       else
         raise Ropenstack::RopenstackError, "Invalid type passed to Orchestration"
       end

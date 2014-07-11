@@ -4,8 +4,10 @@
 # * Author: Sam 'Tehsmash' Betts, John Davidge
 # * Date: 30/06/2014
 ##
-module IdentityVersion3
-  def version
-    "V3"
+module Ropenstack
+  module Identity::Version3
+    def version
+      "V3"
+    end
   end
 end

@@ -1,6 +1,4 @@
 require 'ropenstack/common/rest'
-require 'ropenstack/image/v1'
-require 'ropenstack/image/v2'
 
 module Ropenstack
   ##
@@ -10,11 +8,15 @@ module Ropenstack
 	# * Date: 30/06/2014
   ##
   class Image < OpenstackService
+    # Pull in sub-modules
+    require 'ropenstack/image/v1'
+    require 'ropenstack/image/v2'
+
     def initialize(location, token, type)
       super(location, token)
       case type
-      when "image" then extend ImageVersion1
-      when "imagev2" then extend ImageVersion2
+      when "image" then extend Version1
+      when "imagev2" then extend Version2
       else
         raise Ropenstack::RopenstackError, "Invalid type passed to Image"
       end

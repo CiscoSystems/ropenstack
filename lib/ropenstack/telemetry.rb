@@ -1,5 +1,4 @@
 require 'ropenstack/common/rest'
-require 'ropenstack/telemetry/v2'
 
 module Ropenstack
   ##
@@ -9,10 +8,13 @@ module Ropenstack
 	# * Date: 30/06/2014
   ##
   class Telemetry < OpenstackService
+    # Pull in submodules.
+    require 'ropenstack/telemetry/v2'
+
     def intialize(location, token, type)
       super(location, token)
       case type
-      when "telemetry" then extend TelemetryVersion2
+      when "telemetry" then extend Version2
       else
         raise Ropenstack::RopenstackError, "Invalid type passed to Telemetry"
       end

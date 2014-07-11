@@ -1,6 +1,4 @@
 require 'ropenstack/common/rest'
-require 'ropenstack/identity/v2'
-require 'ropenstack/identity/v3'
 
 module Ropenstack
   ##
@@ -10,11 +8,15 @@ module Ropenstack
   # * Date: 30/16/2014
   ##
   class Identity < OpenstackService
+    # Pull in sub-modules.
+    require 'ropenstack/identity/v2'
+    require 'ropenstack/identity/v3'
+
     def initialize(location, port, token, type)
       super(location + ":" + port.to_s, token)
       case type
-      when "identityv2" then extend IdentityVersion2
-      when "identityv3" then extend IdentityVersion3
+      when "identityv2" then extend Version2
+      when "identityv3" then extend Version3
       else
         raise Ropenstack::RopenstackError, "Invalid Type Passed to Identity"
       end

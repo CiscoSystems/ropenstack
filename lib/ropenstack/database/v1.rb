@@ -1,10 +1,10 @@
-##
-# * Name: DatabaseVersion1
-# * Description: Implementation of the Block Storage V1.0 API Client in Ruby.
-# * Author: Sam 'Tehsmash' Betts, John Davidge
-# * Date: 30/06/2014
-##
 module Ropenstack
+  ##
+  # * Name: DatabaseVersion1
+  # * Description: Implementation of the Block Storage V1.0 API Client in Ruby.
+  # * Author: Sam 'Tehsmash' Betts, John Davidge
+  # * Date: 30/06/2014
+  ##
   module Database::Version1
     ## Database Instances
     def instances(id)

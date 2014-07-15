@@ -1,9 +1,3 @@
-require 'ropenstack/networking/v2/extensions/l3'
-require 'ropenstack/networking/v2/extensions/lbaas'
-require 'ropenstack/networking/v2/extensions/metering'
-require 'ropenstack/networking/v2/extensions/quotas'
-require 'ropenstack/networking/v2/extensions/securitygroups'
-
 module Ropenstack
 =begin
 	* Name: Networking
@@ -12,12 +6,14 @@ module Ropenstack
 	* Date: 01/15/2013
 =end
   class Networking < OpenstackService
+    require 'ropenstack/networking/v2'
+
     ## Extensions
-    include L3
-    include LBaaS
-    include Metering
-    include Quotas
-    include SecurityGroups
+    include Version2::Extensions::L3
+    include Version2::Extensions::LBaaS
+    include Version2::Extensions::Metering
+    include Version2::Extensions::Quotas
+    include Version2::Extensions::SecurityGroups
 
     ## Networks
 

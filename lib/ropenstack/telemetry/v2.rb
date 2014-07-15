@@ -1,10 +1,10 @@
-  ##
-	# * Name: TelemetryVersion2
-	# * Description: Implementation of the Telemetry V2.0 API Client in Ruby 
-	# * Author: Sam 'Tehsmash' Betts, John Davidge
-	# * Date: 30/06/2014
-  ##
 module Ropenstack
+  ##
+  # * Name: TelemetryVersion2
+  # * Description: Implementation of the Telemetry V2.0 API Client in Ruby 
+  # * Author: Sam 'Tehsmash' Betts, John Davidge
+  # * Date: 30/06/2014
+  ##
   module Telemetry::Version2
     def alarms(id = nil)
       if id.nil?

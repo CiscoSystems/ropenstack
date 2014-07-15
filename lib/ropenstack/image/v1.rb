@@ -1,10 +1,10 @@
-##
-# * Name: ImageVersion1
-# * Description: Implementation of the Glance V1.0 API Client in Ruby
-# * Author: Sam 'Tehsmash' Betts, John Davidge
-# * Date: 30/06/2014
-##
 module Ropenstack
+  ##
+  # * Name: ImageVersion1
+  # * Description: Implementation of the Glance V1.0 API Client in Ruby
+  # * Author: Sam 'Tehsmash' Betts, John Davidge
+  # * Date: 30/06/2014
+  ##
   module Image::Version1
 
     ##

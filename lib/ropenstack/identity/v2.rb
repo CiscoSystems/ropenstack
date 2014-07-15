@@ -1,10 +1,10 @@
-##
-# * Name: IdentityVersion2
-# * Description: An implementation of the V2.0 Identity API Client in Ruby
-# * Author: Sam 'Tehsmash' Betts, John Davidge
-# * Date: 30/06/2014
-##
 module Ropenstack
+  ##
+  # * Name: IdentityVersion2
+  # * Description: An implementation of the V2.0 Identity API Client in Ruby
+  # * Author: Sam 'Tehsmash' Betts, John Davidge
+  # * Date: 30/06/2014
+  ##
   module Identity::Version2
           ##
           # Authenticate via keystone, unless a token and tenant are defined then a unscoped 

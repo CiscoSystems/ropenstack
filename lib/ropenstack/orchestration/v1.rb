@@ -1,10 +1,10 @@
-##
-# * Name: OrchestrationVersion1
-# * Description: Implementation of the Orchestration V1.0 API Client in Ruby 
-# * Author: Sam 'Tehsmash' Betts, John Davidge
-# * Date: 30/06/2014
-##
 module Ropenstack
+  ##
+  # * Name: OrchestrationVersion1
+  # * Description: Implementation of the Orchestration V1.0 API Client in Ruby 
+  # * Author: Sam 'Tehsmash' Betts, John Davidge
+  # * Date: 30/06/2014
+  ##
   module Orchestration::Version1
     def stacks(name, id)
       if name.nil?

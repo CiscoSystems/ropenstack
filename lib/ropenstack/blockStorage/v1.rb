@@ -1,3 +1,9 @@
+=begin
+	* Name: Version1 
+	* Description: Module used to contain the version 1 methods.  
+	* Author: Sam 'Tehsmash' Betts
+	* Date: 01/15/2013
+=end
 module Ropenstack::BlockStorage::Version1
     ##
     # Gets the volumes from cinder, and provides them in a ruby hash 

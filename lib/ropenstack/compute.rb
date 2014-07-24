@@ -9,6 +9,11 @@ module Ropenstack
 	* Date: 01/15/2013
 =end
   class Compute < OpenstackService
+    require 'ropenstack/compute/v2'
+    require 'ropenstack/compute/v3'
+
+    include Version2
+
     ##
     # Gets a list of servers from OpenStack 
     #

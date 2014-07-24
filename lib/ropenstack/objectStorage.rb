@@ -56,4 +56,5 @@ module Ropenstack
     
     def create_object_metadata(account, container, object)
     end
+  end
 end
